@@ -1,0 +1,551 @@
+<meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Saffron & Stone — seasonal plates, handcrafted drinks, and warm hospitality.">
+  <title>Saffron & Stone | Modern Dining</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --ink: #20251f;
+      --muted: #6f756d;
+      --cream: #f8f6ef;
+      --paper: #fffdf8;
+      --green: #294c3a;
+      --green-dark: #1d382b;
+      --lime: #d8e4a4;
+      --orange: #d97645;
+      --line: #e7e4da;
+      --shadow: 0 18px 50px rgba(29, 56, 43, .10);
+      --radius: 22px;
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+    body { background: var(--cream); color: var(--ink); font-family: "DM Sans", sans-serif; line-height: 1.6; }
+    img { display: block; max-width: 100%; }
+    button, input, select, textarea { font: inherit; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    a { color: inherit; text-decoration: none; }
+    button { cursor: pointer; }
+    .container { width: min(1160px, calc(100% - 40px)); margin-inline: auto; }
+    .eyebrow { color: var(--orange); font-size: .76rem; font-weight: 700; letter-spacing: .16em; text-transform: uppercase; }
+    h1, h2, h3 { font-family: "Playfair Display", Georgia, serif; line-height: 1.12; }
+    h2 { font-size: clamp(2.1rem, 4vw, 3.4rem); letter-spacing: -.035em; }
+    .section { padding: 92px 0; }
+    .section-head { display: flex; justify-content: space-between; align-items: end; gap: 24px; margin-bottom: 36px; }
+    .section-head p { max-width: 460px; color: var(--muted); margin-top: 12px; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; gap: 9px; border: 1px solid transparent; border-radius: 999px; padding: 13px 21px; font-weight: 700; transition: transform .2s, background .2s, color .2s; }
+    .btn:hover { transform: translateY(-2px); }
+    .btn-primary { background: var(--green); color: white; }
+    .btn-primary:hover { background: var(--green-dark); }
+    .btn-light { background: var(--paper); color: var(--green); border-color: var(--line); }
+    .btn-outline { border-color: rgba(255,255,255,.5); color: white; background: transparent; }
+    .icon-btn { width: 44px; height: 44px; border: 1px solid var(--line); background: var(--paper); border-radius: 50%; display: grid; place-items: center; font-size: 1.1rem; }
+    .announcement { background: var(--green-dark); color: #fff; text-align: center; padding: 8px 16px; font-size: .82rem; letter-spacing: .02em; }
+    .announcement strong { color: var(--lime); }
+    header { position: sticky; top: 0; z-index: 20; background: rgba(248,246,239,.92); backdrop-filter: blur(16px); border-bottom: 1px solid rgba(231,228,218,.8); }
+    .nav { min-height: 78px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .brand { display: flex; align-items: center; gap: 11px; font-weight: 700; letter-spacing: -.04em; font-size: 1.08rem; }
+    .brand-mark { width: 38px; height: 38px; border-radius: 50% 50% 50% 12px; display: grid; place-items: center; color: var(--lime); background: var(--green); font-size: 1.1rem; transform: rotate(-8deg); }
+    .brand span:last-child { display: block; }
+    .brand small { display: block; font-size: .62rem; color: var(--muted); letter-spacing: .15em; text-transform: uppercase; margin-top: -3px; }
+    .nav-links { display: flex; gap: 27px; align-items: center; color: #535a52; font-size: .9rem; }
+    .nav-links a:hover { color: var(--orange); }
+    .nav-actions { display: flex; gap: 10px; align-items: center; }
+    .cart-button { position: relative; }
+    .cart-count { position: absolute; right: -3px; top: -4px; min-width: 19px; height: 19px; padding: 0 4px; display: grid; place-items: center; border-radius: 20px; background: var(--orange); color: white; font-size: .68rem; font-weight: 700; }
+    .menu-toggle { display: none; }
+    .hero { padding: 44px 0 66px; }
+    .hero-grid { display: grid; grid-template-columns: .95fr 1.05fr; gap: 48px; align-items: center; }
+    .hero-copy { padding: 28px 0; }
+    .hero h1 { font-size: clamp(3.2rem, 6.5vw, 6.2rem); letter-spacing: -.065em; margin: 18px 0 22px; }
+    .hero h1 em { color: var(--orange); font-style: normal; }
+    .hero-copy > p { max-width: 490px; color: var(--muted); font-size: 1.08rem; margin-bottom: 28px; }
+    .hero-actions { display: flex; flex-wrap: wrap; gap: 12px; }
+    .hero-meta { display: flex; gap: 24px; margin-top: 34px; flex-wrap: wrap; }
+    .meta-item { display: flex; gap: 9px; align-items: center; font-size: .85rem; }
+    .meta-icon { width: 38px; height: 38px; border-radius: 12px; background: #e9eddb; display: grid; place-items: center; }
+    .meta-item strong { display: block; font-size: .92rem; }
+    .meta-item span:last-child { color: var(--muted); }
+    .hero-art { min-height: 510px; position: relative; border-radius: 48% 48% 24px 24px; overflow: hidden; background: #d7d9b9; box-shadow: var(--shadow); }
+    .hero-art img { width: 100%; height: 100%; min-height: 510px; object-fit: cover; }
+    .hero-tag { position: absolute; left: 22px; bottom: 22px; max-width: 230px; padding: 16px 19px; border-radius: 16px; background: rgba(255,253,248,.93); backdrop-filter: blur(10px); }
+    .hero-tag strong { display: block; font-family: "Playfair Display", serif; font-size: 1.15rem; }
+    .hero-tag span { font-size: .82rem; color: var(--muted); }
+    .floating-rating { position: absolute; top: 25px; right: 22px; background: var(--paper); border-radius: 16px; padding: 12px 16px; box-shadow: var(--shadow); font-size: .85rem; }
+    .floating-rating b { color: var(--orange); }
+    .trust-strip { border-block: 1px solid var(--line); padding: 22px 0; }
+    .trust-inner { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; color: #73786f; font-size: .88rem; }
+    .trust-inner span { display: flex; align-items: center; gap: 9px; }
+    .trust-inner b { color: var(--green); }
+    .menu-section { background: var(--paper); }
+    .menu-tools { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; margin-bottom: 26px; }
+    .filters { display: flex; gap: 8px; flex-wrap: wrap; }
+    .filter-btn { padding: 9px 16px; border: 1px solid var(--line); background: transparent; border-radius: 999px; color: var(--muted); }
+    .filter-btn.active, .filter-btn:hover { background: var(--green); color: white; border-color: var(--green); }
+    .search-wrap { position: relative; min-width: min(100%, 250px); }
+    .search-wrap input { width: 100%; border: 1px solid var(--line); border-radius: 999px; padding: 11px 16px 11px 40px; outline: none; background: var(--cream); }
+    .search-wrap input:focus { border-color: var(--green); box-shadow: 0 0 0 3px #294c3a15; }
+    .search-icon { position: absolute; left: 15px; top: 50%; transform: translateY(-50%); color: var(--muted); }
+    .menu-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+    .food-card { border: 1px solid var(--line); border-radius: 20px; overflow: hidden; background: var(--paper); transition: transform .22s, box-shadow .22s; }
+    .food-card:hover { transform: translateY(-5px); box-shadow: var(--shadow); }
+    .food-image { height: 220px; position: relative; overflow: hidden; background: #e7e4da; }
+    .food-image img { width: 100%; height: 100%; object-fit: cover; transition: transform .45s; }
+    .food-card:hover .food-image img { transform: scale(1.05); }
+    .food-label { position: absolute; top: 13px; left: 13px; background: var(--paper); border-radius: 999px; padding: 6px 10px; font-size: .72rem; font-weight: 700; }
+    .food-body { padding: 19px; }
+    .food-title-row { display: flex; justify-content: space-between; align-items: start; gap: 12px; }
+    .food-title-row h3 { font-size: 1.28rem; }
+    .price { color: var(--green); font-weight: 700; white-space: nowrap; }
+    .food-body p { color: var(--muted); font-size: .87rem; margin: 10px 0 17px; min-height: 42px; }
+    .food-bottom { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+    .food-rating { font-size: .82rem; color: #73786f; }
+    .add-btn { border: 0; background: #e9eddb; color: var(--green); width: 39px; height: 39px; border-radius: 50%; font-size: 1.4rem; line-height: 1; }
+    .add-btn:hover { background: var(--green); color: white; }
+    .empty-state { display: none; text-align: center; padding: 40px 12px; color: var(--muted); }
+    .story-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; }
+    .story-images { position: relative; padding: 0 35px 35px 0; }
+    .story-main { width: 100%; height: 480px; object-fit: cover; border-radius: 180px 180px 20px 20px; }
+    .story-small { position: absolute; right: 0; bottom: 0; width: 44%; height: 215px; object-fit: cover; border: 8px solid var(--cream); border-radius: 18px; }
+    .story-copy p { color: var(--muted); margin: 19px 0; }
+    .story-points { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin: 28px 0; }
+    .story-point { padding: 17px; background: #efeee5; border-radius: 14px; }
+    .story-point strong { display: block; font-family: "Playfair Display", serif; font-size: 1.1rem; }
+    .story-point span { color: var(--muted); font-size: .83rem; }
+    .special { background: var(--green); color: white; overflow: hidden; }
+    .special-grid { display: grid; grid-template-columns: 1fr 1fr; align-items: center; gap: 55px; }
+    .special .eyebrow { color: var(--lime); }
+    .special h2 { margin: 14px 0 20px; }
+    .special p { color: #d5ded5; max-width: 500px; }
+    .special-price { display: flex; align-items: center; gap: 15px; margin: 25px 0; }
+    .special-price strong { font-size: 1.7rem; color: var(--lime); }
+    .special-price del { color: #b6c4b8; }
+    .special-image { position: relative; }
+    .special-image img { height: 370px; width: 100%; object-fit: cover; border-radius: 24px; }
+    .special-sticker { position: absolute; right: -15px; top: -15px; width: 88px; height: 88px; border-radius: 50%; display: grid; place-items: center; text-align: center; background: var(--lime); color: var(--green); font-weight: 800; line-height: 1.15; transform: rotate(10deg); }
+    .reviews { background: #efeee5; }
+    .review-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+    .review-card { padding: 26px; background: var(--paper); border-radius: 18px; border: 1px solid var(--line); }
+    .stars { color: #d97645; letter-spacing: 3px; margin-bottom: 15px; }
+    .review-card blockquote { font-family: "Playfair Display", serif; font-size: 1.13rem; line-height: 1.55; }
+    .review-person { display: flex; align-items: center; gap: 12px; margin-top: 22px; }
+    .avatar { width: 42px; height: 42px; border-radius: 50%; display: grid; place-items: center; background: #e1e7cf; color: var(--green); font-weight: 700; }
+    .review-person strong { display: block; font-size: .9rem; }
+    .review-person span { color: var(--muted); font-size: .78rem; }
+    .reservation { background: var(--paper); }
+    .reservation-grid { display: grid; grid-template-columns: .8fr 1.2fr; gap: 60px; align-items: start; }
+    .reservation-copy p { color: var(--muted); margin: 18px 0 24px; }
+    .contact-line { display: flex; gap: 12px; align-items: start; margin: 18px 0; }
+    .contact-line .meta-icon { flex-shrink: 0; }
+    .contact-line strong { display: block; }
+    .contact-line span { color: var(--muted); font-size: .88rem; }
+    .reservation-form { background: var(--cream); border: 1px solid var(--line); padding: 30px; border-radius: 22px; }
+    .reservation-form h3 { font-size: 1.7rem; margin-bottom: 7px; }
+    .reservation-form > p { color: var(--muted); font-size: .88rem; margin-bottom: 22px; }
+    .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+    .field { display: flex; flex-direction: column; gap: 7px; }
+    .field.full { grid-column: 1 / -1; }
+    .field label { font-size: .82rem; font-weight: 700; }
+    .field input, .field select, .field textarea { width: 100%; padding: 12px 13px; border: 1px solid #dedbd0; border-radius: 10px; background: var(--paper); outline: none; }
+    .field input:focus, .field select:focus, .field textarea:focus { border-color: var(--green); box-shadow: 0 0 0 3px #294c3a12; }
+    .field textarea { resize: vertical; min-height: 88px; }
+    .form-note { font-size: .77rem; color: var(--muted); margin-top: 13px; }
+    .form-status { margin-top: 14px; font-weight: 700; color: var(--green); }
+    .newsletter { padding: 50px 0; background: var(--lime); }
+    .newsletter-inner { display: flex; align-items: center; justify-content: space-between; gap: 28px; }
+    .newsletter h2 { font-size: clamp(1.8rem, 3vw, 2.6rem); }
+    .newsletter p { color: #56644a; margin-top: 7px; }
+    .newsletter-form { display: flex; gap: 8px; width: min(100%, 440px); }
+    .newsletter-form input { min-width: 0; flex: 1; padding: 13px 16px; border: 1px solid #c6d29a; border-radius: 999px; background: rgba(255,255,255,.75); outline: none; }
+    .newsletter-form button { border: 0; }
+    footer { background: #172b21; color: white; padding: 62px 0 22px; }
+    .footer-grid { display: grid; grid-template-columns: 1.4fr 1fr 1fr 1.1fr; gap: 36px; padding-bottom: 42px; }
+    footer .brand { margin-bottom: 17px; }
+    footer .brand small { color: #aebcaf; }
+    .footer-about { color: #b6c3b7; font-size: .88rem; max-width: 280px; }
+    .footer-col h4 { font-size: .9rem; margin-bottom: 17px; }
+    .footer-col a, .footer-col p { display: block; color: #b6c3b7; font-size: .85rem; margin: 10px 0; }
+    .footer-col a:hover { color: var(--lime); }
+    .socials { display: flex; gap: 9px; margin-top: 18px; }
+    .socials a { display: grid; place-items: center; width: 36px; height: 36px; border: 1px solid #496153; border-radius: 50%; margin: 0; }
+    .footer-bottom { border-top: 1px solid #344a3b; padding-top: 19px; display: flex; justify-content: space-between; gap: 16px; color: #9fae9f; font-size: .78rem; }
+    .overlay { position: fixed; inset: 0; background: rgba(10,20,14,.5); z-index: 39; opacity: 0; pointer-events: none; transition: opacity .2s; }
+    .overlay.show { opacity: 1; pointer-events: auto; }
+    .cart-drawer { position: fixed; z-index: 40; top: 0; right: 0; width: min(430px, 100%); height: 100dvh; padding: 24px; background: var(--paper); box-shadow: -20px 0 60px #0002; transform: translateX(105%); transition: transform .25s; display: flex; flex-direction: column; }
+    .cart-drawer.open { transform: translateX(0); }
+    .cart-head { display: flex; justify-content: space-between; align-items: center; padding-bottom: 18px; border-bottom: 1px solid var(--line); }
+    .cart-head h3 { font-size: 1.8rem; }
+    .cart-items { overflow-y: auto; flex: 1; padding: 12px 0; }
+    .cart-empty { text-align: center; padding: 45px 10px; color: var(--muted); }
+    .cart-item { display: grid; grid-template-columns: 1fr auto; gap: 12px; padding: 15px 0; border-bottom: 1px solid var(--line); }
+    .cart-item strong { display: block; }
+    .cart-item small { color: var(--muted); }
+    .quantity { display: flex; align-items: center; gap: 10px; margin-top: 8px; }
+    .quantity button { border: 1px solid var(--line); background: white; width: 27px; height: 27px; border-radius: 50%; }
+    .cart-summary { border-top: 1px solid var(--line); padding-top: 18px; }
+    .summary-row { display: flex; justify-content: space-between; margin: 8px 0; color: var(--muted); }
+    .summary-row.total { font-size: 1.12rem; font-weight: 700; color: var(--ink); padding-top: 8px; }
+    .cart-summary .btn { width: 100%; margin-top: 13px; }
+    .toast { position: fixed; z-index: 60; bottom: 24px; left: 50%; transform: translate(-50%, 20px); opacity: 0; pointer-events: none; background: var(--green-dark); color: white; border-radius: 999px; padding: 12px 18px; box-shadow: var(--shadow); transition: .25s; font-size: .9rem; }
+    .toast.show { opacity: 1; transform: translate(-50%, 0); }
+    .back-top { position: fixed; right: 20px; bottom: 20px; z-index: 15; width: 44px; height: 44px; display: none; place-items: center; border: 0; border-radius: 50%; color: white; background: var(--green); box-shadow: var(--shadow); }
+    .back-top.show { display: grid; }
+    @media (max-width: 950px) {
+      .nav-links { gap: 15px; }
+      .hero-grid { gap: 28px; }
+      .hero-art, .hero-art img { min-height: 440px; }
+      .menu-grid { grid-template-columns: repeat(2, 1fr); }
+      .story-grid, .special-grid { gap: 35px; }
+      .footer-grid { grid-template-columns: repeat(2, 1fr); }
+      .reservation-grid { gap: 30px; }
+    }
+    @media (max-width: 720px) {
+      .container { width: min(100% - 28px, 560px); }
+      .section { padding: 68px 0; }
+      .nav { min-height: 68px; }
+      .menu-toggle { display: grid; }
+      .nav-links { position: absolute; left: 14px; right: 14px; top: 76px; display: none; flex-direction: column; align-items: stretch; gap: 0; padding: 10px; background: var(--paper); border: 1px solid var(--line); border-radius: 16px; box-shadow: var(--shadow); }
+      .nav-links.open { display: flex; }
+      .nav-links a { padding: 12px; border-radius: 9px; }
+      .nav-links a:hover { background: var(--cream); }
+      .nav-actions .nav-reserve { display: none; }
+      .hero { padding-top: 22px; }
+      .hero-grid { grid-template-columns: 1fr; gap: 28px; }
+      .hero-copy { padding: 15px 0 0; }
+      .hero h1 { font-size: clamp(3.1rem, 15vw, 5rem); }
+      .hero-art, .hero-art img { min-height: 390px; }
+      .section-head { display: block; }
+      .section-head .btn { margin-top: 20px; }
+      .menu-grid { gap: 13px; }
+      .food-image { height: 160px; }
+      .food-body { padding: 14px; }
+      .food-title-row { display: block; }
+      .food-title-row h3 { font-size: 1.1rem; }
+      .food-title-row .price { display: block; margin-top: 4px; }
+      .food-body p { font-size: .81rem; min-height: 0; }
+      .story-grid, .special-grid, .reservation-grid { grid-template-columns: 1fr; }
+      .story-main { height: 380px; }
+      .story-copy { order: -1; }
+      .special-image img { height: 300px; }
+      .review-grid { grid-template-columns: 1fr; }
+      .newsletter-inner { display: block; }
+      .newsletter-form { margin-top: 20px; }
+      .form-grid { grid-template-columns: 1fr; }
+      .field.full { grid-column: auto; }
+      .reservation-form { padding: 20px; }
+      .footer-grid { gap: 28px 18px; }
+      .footer-bottom { flex-direction: column; }
+      .trust-inner { justify-content: flex-start; gap: 12px 22px; }
+    }
+    @media (max-width: 390px) {
+      .menu-grid { grid-template-columns: 1fr; }
+      .food-image { height: 220px; }
+      .hero-meta { gap: 14px; }
+      .hero-art, .hero-art img { min-height: 340px; }
+      .story-points { grid-template-columns: 1fr; }
+      .footer-grid { grid-template-columns: 1fr 1fr; }
+      .footer-grid > div:first-child { grid-column: 1 / -1; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { scroll-behavior: auto !important; transition: none !important; animation: none !important; }
+    }
+  </style>
+</head>
+<body>
+  <div class="announcement">A little taste of something special — <strong>10% off your first order</strong> with code WELCOME10</div>
+
+  <header>
+    <nav class="nav container" aria-label="Main navigation">
+      <a class="brand" href="#home" aria-label="Saffron and Stone home">
+        <span class="brand-mark">S</span>
+        <span>SAFFRON & STONE<small>Kitchen · Bar · Gather</small></span>
+      </a>
+      <div class="nav-links" id="navLinks">
+        <a href="#home">Home</a>
+        <a href="#menu">Our Menu</a>
+        <a href="#story">Our Story</a>
+        <a href="#reviews">Reviews</a>
+        <a href="#contact">Contact</a>
+      </div>
+      <div class="nav-actions">
+        <button class="icon-btn cart-button" id="openCart" aria-label="Open shopping cart">🛒<span class="cart-count" id="cartCount">0</span></button>
+        <a class="btn btn-primary nav-reserve" href="#reservation">Book a table ↗</a>
+        <button class="icon-btn menu-toggle" id="menuToggle" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+      </div>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" id="home">
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <span class="eyebrow">Good food. Good mood.</span>
+          <h1>Made with love.<br>Served with <em>soul.</em></h1>
+          <p>Seasonal ingredients, thoughtful cooking, and a table that always has room for one more. Come hungry; leave happy.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#menu">Explore the menu <span>↗</span></a>
+            <a class="btn btn-light" href="#reservation">Reserve your table</a>
+          </div>
+          <div class="hero-meta">
+            <div class="meta-item"><span class="meta-icon">✦</span><span><strong>Fresh daily</strong><span>Locally sourced</span></span></div>
+            <div class="meta-item"><span class="meta-icon">♡</span><span><strong>Made with care</strong><span>Every single plate</span></span></div>
+          </div>
+        </div>
+        <div class="hero-art">
+          <img src="https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=1200&q=85" alt="Fresh colorful salad served in a bowl">
+          <div class="floating-rating">★★★★★ <b>4.9/5</b><br><small>From our happy guests</small></div>
+          <div class="hero-tag"><strong>A fresh take on comfort.</strong><span>Thoughtful plates, unforgettable moments.</span></div>
+        </div>
+      </div>
+    </section>
+
+    <div class="trust-strip">
+      <div class="container trust-inner">
+        <span>✳ <b>Farm-fresh</b> ingredients</span>
+        <span>♧ Vegetarian-friendly options</span>
+        <span>♡ Made fresh to order</span>
+        <span>⌂ A place to gather</span>
+      </div>
+    </div>
+
+    <section class="section menu-section" id="menu">
+      <div class="container">
+        <div class="section-head">
+          <div><span class="eyebrow">From our kitchen</span><h2>Good things on the table.</h2><p>Bright flavors, comforting favorites, and a few surprises. Find your next favorite below.</p></div>
+          <a class="btn btn-light" href="#reservation">Planning a visit? ↗</a>
+        </div>
+        <div class="menu-tools">
+          <div class="filters" id="filters" aria-label="Filter menu">
+            <button class="filter-btn active" data-category="all">All dishes</button>
+            <button class="filter-btn" data-category="starter">Starters</button>
+            <button class="filter-btn" data-category="main">Mains</button>
+            <button class="filter-btn" data-category="dessert">Desserts</button>
+            <button class="filter-btn" data-category="drink">Drinks</button>
+          </div>
+          <label class="search-wrap"><span class="search-icon">⌕</span><input type="search" id="menuSearch" placeholder="Search the menu…" aria-label="Search menu items"></label>
+        </div>
+        <div class="menu-grid" id="menuGrid">
+          <article class="food-card" data-category="starter" data-name="garden avocado toast">
+            <div class="food-image"><img loading="lazy" src="https://images.unsplash.com/photo-1525351484163-7529414344d8?auto=format&fit=crop&w=800&q=80" alt="Avocado toast on rustic bread"><span class="food-label">Guest favorite</span></div>
+            <div class="food-body"><div class="food-title-row"><h3>Garden Avocado Toast</h3><span class="price">₹249</span></div><p>Sourdough, smashed avocado, herbs, lemon, and toasted seeds.</p><div class="food-bottom"><span class="food-rating">★ 4.9 · Vegetarian</span><button class="add-btn" data-name="Garden Avocado Toast" data-price="249" aria-label="Add Garden Avocado Toast to cart">+</button></div></div>
+          </article>
+          <article class="food-card" data-category="starter" data-name="crispy corn bites">
+            <div class="food-image"><img loading="lazy" src="https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=800&q=80" alt="Crispy golden snack bites"><span class="food-label">Crunchy & fun</span></div>
+            <div class="food-body"><div class="food-title-row"><h3>Crispy Corn Bites</h3><span class="price">₹199</span></div><p>Golden sweet corn, house spices, fresh coriander, and a tangy dip.</p><div class="food-bottom"><span class="food-rating">★ 4.7 · Vegetarian</span><button class="add-btn" data-name="Crispy Corn Bites" data-price="199" aria-label="Add Crispy Corn Bites to cart">+</button></div></div>
+          </article>
+          <article class="food-card" data-category="main" data-name="creamy pesto pasta">
+            <div class="food-image"><img loading="lazy" src="https://images.unsplash.com/photo-1473093295043-cdd812d0e601?auto=format&fit=crop&w=800&q=80" alt="Pasta with pesto and fresh herbs"><span class="food-label">Chef's pick</span></div>
+            <div class="food-body"><div class="food-title-row"><h3>Creamy Pesto Pasta</h3><span class="price">₹349</span></div><p>Silky pesto cream, parmesan, basil, and perfectly cooked pasta.</p><div class="food-bottom"><span class="food-rating">★ 4.9 · Popular</span><button class="add-btn" data-name="Creamy Pesto Pasta" data-price="349" aria-label="Add Creamy Pesto Pasta to cart">+</button></div></d1iv>
+          </article>
+          <article class="food-card" data-category="main" data-name="farmhouse flatbread pizza">
+            <div class="food-image"><img loading="lazy" src="https://images.unsplash.com/photo-1579751626657-72bc17010498?auto=format&fit=crop&w=800&q=80" alt="Freshly baked flatbread pizza"><span class="food-label">Fresh from oven</span></div>
+            <div class="food-body"><div class="food-title-row"><h3>Farmhouse Flatbread</h3><span class="price">₹329</span></div><p>Wood-fired style flatbread with garden vegetables and melted cheese.</p><div class="food-bottom"><span class="food-rating">★ 4.8 · Vegetarian</span><button class="add-btn" data-name="Farmhouse Flatbread" data-price="329" aria-label="Add Farmhouse Flatbread to cart">+</button></div></div>
+          </article>
+          <article class="food-card" data-category="dessert" data-name="chocolate brownie">
+            <div class="food-image"><img loading="lazy" src="https://images.unsplash.com/photo-1606313564200-e75d5e30476c?auto=format&fit=crop&w=800&q=80" alt="Rich chocolate brownie dessert"><span class="food-label">Sweet ending</span></div>
+            <div class="food-body"><div class="food-title-row"><h3>Warm Chocolate Brownie</h3><span class="price">₹179</span></div><p>Deep chocolate brownie, vanilla cream, and a little sea salt.</p><div class="food-bottom"><span class="food-rating">★ 5.0 · Bestseller</span><button class="add-btn" data-name="Warm Chocolate Brownie" data-price="179" aria-label="Add Warm Chocolate Brownie to cart">+</button></div></div>
+          </article>
+          <article class="food-card" data-category="drink" data-name="berry lemonade">
+            <div class="food-image"><img loading="lazy" src="https://images.unsplash.com/photo-1513558161293-cdaf765edfd7?auto=format&fit=crop&w=800&q=80" alt="Refreshing iced fruit drink"><span class="food-label">Cool & refreshing</span></div>
+            <div class="food-body"><div class="food-title-row"><h3>Berry Lemonade</h3><span class="price">₹149</span></div><p>Fresh lemon, muddled berries, mint, and sparkling water.</p><div class="food-bottom"><span class="food-rating">★ 4.8 · Non-alcoholic</span><button class="add-btn" data-name="Berry Lemonade" data-price="149" aria-label="Add Berry Lemonade to cart">+</button></div></div>
+          </article>
+        </div>
+        <div class="empty-state" id="emptyState">No dishes found. Try a different search.</div>
+      </div>
+    </section>
+
+    <section class="section" id="story">
+      <div class="container story-grid">
+        <div class="story-images">
+          <img class="story-main" loading="lazy" src="https://images.unsplash.com/photo-1559339352-11d035aa65de?auto=format&fit=crop&w=1000&q=85" alt="Warm and welcoming restaurant interior">
+          <img class="story-small" loading="lazy" src="https://images.unsplash.com/photo-1551218808-94e220e084d2?auto=format&fit=crop&w=600&q=80" alt="Chef preparing a fresh dish">
+        </div>
+        <div class="story-copy">
+          <span class="eyebrow">A little about us</span>
+          <h2>More than a meal. A feeling.</h2>
+          <p>At Saffron & Stone, we believe the best memories happen around a table. We bring seasonal produce, familiar flavors, and a creative touch together in a relaxed, welcoming space.</p>
+          <p>Our kitchen keeps things thoughtful: fresh ingredients, carefully prepared dishes, and hospitality that feels personal. Whether it's a quick lunch or a long dinner, there's a seat for you here.</p>
+          <div class="story-points">
+            <div class="story-point"><strong>Fresh first</strong><span>Seasonal ingredients</span></div>
+            <div class="story-point"><strong>Made with heart</strong><span>Care in every detail</span></div>
+            <div class="story-point"><strong>Come as you are</strong><span>Easy, relaxed dining</span></div>
+            <div class="story-point"><strong>Share the joy</strong><span>Food brings us together</span></div>
+          </div>
+          <a href="#reservation" class="btn btn-primary">Come say hello ↗</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section special">
+      <div class="container special-grid">
+        <div><span class="eyebrow">A little something extra</span><h2>The seasonal plate<br>worth slowing down for.</h2><p>Our chef's seasonal special changes with the freshest ingredients available. Ask our team what's on the plate today and let us surprise you.</p><div class="special-price"><strong>From ₹399</strong><span>Prepared fresh to order</span></div><a href="#reservation" class="btn btn-light">Ask about today's special ↗</a></div>
+        <div class="special-image"><img loading="lazy" src="https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=1000&q=85" alt="A colorful seasonal chef special"><div class="special-sticker">FRESH<br>THIS<br>SEASON</div></div>
+      </div>
+    </section>
+
+    <section class="section reviews" id="reviews">
+      <div class="container">
+        <div class="section-head"><div><span class="eyebrow">Kind words</span><h2>Good food, happy people.</h2><p>Here are a few sample testimonials for this demo website. Replace them with genuine customer reviews before publishing.</p></div></div>
+        <div class="review-grid">
+          <article class="review-card"><div class="stars">★★★★★</div><blockquote>“Beautiful atmosphere, thoughtful service, and food that feels both fresh and comforting. A lovely place to spend an evening.”</blockquote><div class="review-person"><div class="avatar">RK</div><div><strong>Riya K.</strong><span>Sample guest review</span></div></div></article>
+          <article class="review-card"><div class="stars">★★★★★</div><blockquote>“The menu has something for everyone. The flavors were balanced, the presentation was lovely, and we'll definitely be back.”</blockquote><div class="review-person"><div class="avatar">AM</div><div><strong>Arjun M.</strong><span>Sample guest review</span></div></div></article>
+          <article class="review-card"><div class="stars">★★★★★</div><blockquote>“A relaxed setting for catching up with friends. Great little details and a team that makes you feel welcome.”</blockquote><div class="review-person"><div class="avatar">SP</div><div><strong>Simran P.</strong><span>Sample guest review</span></div></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section reservation" id="reservation">
+      <div class="container reservation-grid">
+        <div class="reservation-copy" id="contact">
+          <span class="eyebrow">Your table is waiting</span><h2>Let's make it a date.</h2>
+          <p>Planning a catch-up, a celebration, or just a good meal? Send us a reservation request and our team can confirm the details.</p>
+          <div class="contact-line"><span class="meta-icon">⌖</span><div><strong>Find us</strong><span>123 Garden Lane, Pune, Maharashtra</span></div></div>
+          <div class="contact-line"><span class="meta-icon">◷</span><div><strong>Opening hours</strong><span>Mon–Sun · 11:00 AM – 11:00 PM</span></div></div>
+          <div class="contact-line"><span class="meta-icon">☎</span><div><strong>Call us</strong><span>+91 98765 43210 (demo number)</span></div></div>
+          <div class="contact-line"><span class="meta-icon">✉</span><div><strong>Email</strong><span>hello@saffronandstone.example</span></div></div>
+        </div>
+        <form class="reservation-form" id="reservationForm">
+          <h3>Reserve a table</h3><p>Fill in your details. This demo will validate the form in your browser.</p>
+          <div class="form-grid">
+            <div class="field"><label for="guestName">Full name *</label><input id="guestName" name="name" placeholder="Your name" required autocomplete="name"></div>
+            <div class="field"><label for="guestEmail">Email address *</label><input id="guestEmail" name="email" type="email" placeholder="you@example.com" required autocomplete="email"></div>
+            <div class="field"><label for="guestPhone">Phone number *</label><input id="guestPhone" name="phone" type="tel" placeholder="+91..." required autocomplete="tel"></div>
+            <div class="field"><label for="guestCount">Guests *</label><select id="guestCount" name="guests" required><option value="1">1 guest</option><option value="2" selected>2 guests</option><option value="3">3 guests</option><option value="4">4 guests</option><option value="5">5 guests</option><option value="6">6 guests</option><option value="7+">7+ guests</option></select></div>
+            <div class="field"><label for="bookingDate">Date *</label><input id="bookingDate" name="date" type="date" required></div>
+            <div class="field"><label for="bookingTime">Time *</label><select id="bookingTime" name="time" required><option value="">Choose a time</option><option>11:00 AM</option><option>12:00 PM</option><option>1:00 PM</option><option>2:00 PM</option><option>6:00 PM</option><option>7:00 PM</option><option>8:00 PM</option><option>9:00 PM</option><option>10:00 PM</option></select></div>
+            <div class="field full"><label for="bookingNotes">Special request (optional)</label><textarea id="bookingNotes" name="notes" placeholder="Birthday, seating preference, dietary needs…"></textarea></div>
+            <div class="field full"><button class="btn btn-primary" type="submit">Request reservation ↗</button></div>
+          </div>
+          <p class="form-note">Demo only: this form does not send or save a real booking. Connect a backend or reservation service to receive requests.</p>
+          <div class="form-status" id="reservationStatus" role="status" aria-live="polite"></div>
+        </form>
+      </div>
+    </section>
+
+    <section class="newsletter">
+      <div class="container newsletter-inner">
+        <div><h2>A little goodness in your inbox.</h2><p>Seasonal menus, special evenings, and occasional treats. No spam, ever.</p></div>
+        <form class="newsletter-form" id="newsletterForm"><input type="email" id="newsletterEmail" placeholder="Your email address" aria-label="Your email address" required><button class="btn btn-primary" type="submit">Count me in ↗</button></form>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div><a class="brand" href="#home"><span class="brand-mark">S</span><span>SAFFRON & STONE<small>Kitchen · Bar · Gather</small></span></a><p class="footer-about">Thoughtful plates, fresh ingredients, and a welcoming table for every occasion.</p><div class="socials"><a href="#contact" aria-label="Instagram">ig</a><a href="#contact" aria-label="Facebook">f</a><a href="#contact" aria-label="YouTube">▶</a></div></div>
+        <div class="footer-col"><h4>Explore</h4><a href="#menu">Our menu</a><a href="#story">Our story</a><a href="#reviews">Guest reviews</a><a href="#reservation">Reservations</a></div>
+        <div class="footer-col"><h4>Visit us</h4><p>123 Garden Lane<br>Pune, Maharashtra</p><p>Every day<br>11 AM – 11 PM</p></div>
+        <div class="footer-col"><h4>Get in touch</h4><a href="tel:+919876543210">+91 98765 43210</a><a href="mailto:hello@saffronandstone.example">hello@saffronandstone.example</a><p>For groups and events, contact our team.</p></div>
+      </div>
+      <div class="footer-bottom"><span>© <span id="year"></span> Saffron & Stone. Demo website.</span><span>Made with care and a pinch of creativity.</span></div>
+    </div>
+  </footer>
+
+  <div class="overlay" id="overlay"></div>
+  <aside class="cart-drawer" id="cartDrawer" aria-label="Shopping cart" aria-hidden="true">
+    <div class="cart-head"><h3>Your order <span id="cartHeadingCount">(0)</span></h3><button class="icon-btn" id="closeCart" aria-label="Close cart">×</button></div>
+    <div class="cart-items" id="cartItems"><div class="cart-empty">Your basket is empty.<br><br>Find something delicious on the menu.</div></div>
+    <div class="cart-summary"><div class="summary-row"><span>Subtotal</span><strong id="cartSubtotal">₹0</strong></div><div class="summary-row"><span>Estimated taxes (5%)</span><strong id="cartTax">₹0</strong></div><div class="summary-row total"><span>Total</span><strong id="cartTotal">₹0</strong></div><button class="btn btn-primary" id="checkoutBtn">Continue to checkout ↗</button><p class="form-note">Demo cart only. No payment is collected.</p></div>
+  </aside>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+  <button class="back-top" id="backTop" aria-label="Back to top">↑</button>
+
+  <script>
+    // Small interactive restaurant demo. No external backend or payment service is connected.
+    const $ = (selector, root = document) => root.querySelector(selector);
+    const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
+    const cart = new Map();
+    let activeCategory = "all";
+    let toastTimer;
+
+    $("#year").textContent = new Date().getFullYear();
+
+    function showToast(message) {
+      const toast = $("#toast");
+      toast.textContent = message;
+      toast.classList.add("show");
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toast.classList.remove("show"), 2600);
+    }
+
+    // Mobile navigation
+    $("#menuToggle").addEventListener("click", () => {
+      const nav = $("#navLinks");
+      const isOpen = nav.classList.toggle("open");
+      $("#menuToggle").setAttribute("aria-expanded", String(isOpen));
+      $("#menuToggle").textContent = isOpen ? "×" : "☰";
+    });
+    $$("#navLinks a").forEach(link => link.addEventListener("click", () => {
+      $("#navLinks").classList.remove("open");
+      $("#menuToggle").setAttribute("aria-expanded", "false");
+      $("#menuToggle").textContent = "☰";
+    }));
+
+    // Menu filters and search work together.
+    function filterMenu() {
+      const query = $("#menuSearch").value.trim().toLowerCase();
+      let visible = 0;
+      $$(".food-card").forEach(card => {
+        const categoryMatch = activeCategory === "all" || card.dataset.category === activeCategory;
+        const textMatch = card.dataset.name.includes(query) || card.textContent.toLowerCase().includes(query);
+        const show = categoryMatch && textMatch;
+        card.style.display = show ? "" : "none";
+        if (show) visible++;
+      });
+      $("#emptyState").style.display = visible ? "none" : "block";
+    }
+    $$("#filters button").forEach(button => button.addEventListener("click", () => {
+      $$("#filters button").forEach(item => item.classList.remove("active"));
+      button.classList.add("active");
+      activeCategory = button.dataset.category;
+      filterMenu();
+    }));
+    $("#menuSearch").addEventListener("input", filterMenu);
+
+    // Shopping cart state and rendering
+    function addToCart(name, price) {
+      const current = cart.get(name) || { name, price, quantity: 0 };
+      current.quantity++;
+      cart.set(name, current);
+      renderCart();
+      showToast(`${name} added to your basket`);
+    }
+    function changeQuantity(name, amount) {
+      const item = cart.get(name);
+      if (!item) return;
+      item.quantity += amount;
+      if (item.quantity <= 0) cart.delete(name);
+      renderCart();
+    }
+    function renderCart() {
+      const items = [...cart.values()];
+      const count = items.reduce((sum, item) => sum + item.quantity, 0);
+      const subtotal = items.reduce((sum, item) => sum + item.price * item.quantity, 0);
+      const tax = Math.round(subtotal * 0.05);
+      $("#cartCount").textContent = count;
+      $("#cartHeadingCount").textContent = `(${count})`;
+      $("#cartSubtotal").textContent = `₹${subtotal}`;
+      $("#cartTax").textContent = `₹${tax}`;
+      $("#cartTotal").textContent = `₹${subtotal + tax}`;
+      if (!items.length) {
+        $("#cartItems").innerHTML = '<div class="cart-empty">Your basket is empty.<br><br>Find something delicious on the menu.</div>';
+        return;
+      }
+      $("#cartItems").innerHTML = items.map(item => `
+        <div class="cart-item">
+          <div><strong>${escapeHTML(item.name)}</strong><small>₹${item.price} each</small>
+            <div class="quantity">
+              <button type="button" data-change="-1" data-item="${escapeHTML(item.name)}" aria-label="Remove one ${escapeHTML(item.name)}">−</button>
+              <span>${item.quantity}</span>
+              <button type="button" data-change="1" data-item="${escapeHTML(item.name)}" aria-label="Add one ${escapeHTML(item.name)}">+</button>
+            </div>
+          </div>
+          <strong>₹${item.price * item.quantity}</strong>
+        </div>`).join("");
+      $$("#cartItems [data-change]").forEach(button => button.addEventListener("click", () => {
+        changeQuantity(button.dataset.item, Number(button.dataset.change));
+      }));
+    }
+    function escapeHTML(value) 
